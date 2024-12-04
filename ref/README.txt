@@ -1,1 +1,0 @@
-Copy `MelonLoader/Il2CppAssemblies` here -- In the `ref/` folder!!!!
