@@ -9,6 +9,7 @@ jobs:
       steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Setup dotnet
         uses: actions/setup-dotnet@v4
         with:
@@ -16,18 +17,12 @@ jobs:
           source-url: https://nuget.pkg.github.com/GBMTemplates/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '6.0.x'
-          source-url: https://nuget.pkg.github.com/GBMTemplates/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
       - name: Set VERSION variable from tag
         run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
       - name: Pack
         run: dotnet pack --configuration Release /p:Version=${VERSION} --output .
       - name: Push to GitHub Packages
-        run: dotnet nuget push GBMTemplates.${VERSION}.nupkg
+        run: dotnet nuget push GBMTemplates.${VERSION}.nupkg --skip-duplicate --no-symbols true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
