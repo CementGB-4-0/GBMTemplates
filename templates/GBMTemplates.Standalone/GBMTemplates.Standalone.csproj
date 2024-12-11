@@ -45,34 +45,35 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- MelonLoader Packages - Feel free to remove some if unused -->
     <PackageReference Include="LavaGang.MelonLoader" Version="0.6.6" />
     <PackageReference Include="Il2CppInterop.Common" Version="1.4.6-ci.579" />
 		<PackageReference Include="Il2CppInterop.Runtime" Version="1.4.6-ci.579" />
     <PackageReference Include="Il2CppInterop.HarmonySupport" Version="1.4.6-ci.579" />
     <PackageReference Include="Iced" Version="1.21.0" />
 		<PackageReference Include="Mono.Cecil" Version="0.11.6" />
-    <PackageReference Include="AssetRipper.VersionUtilities" Version="1.5.0" />
-		<PackageReference Include="AssetsTools.NET" Version="3.0.0-preview3" />
 		<PackageReference Include="HarmonyX" Version="2.10.2" />
 		<PackageReference Include="MonoMod" Version="22.7.31.1" />
 		<PackageReference Include="MonoMod.RuntimeDetour" Version="22.7.31.1" />
 		<PackageReference Include="MonoMod.Utils" Version="22.7.31.1" />
 		<PackageReference Include="Samboy063.Tomlet" Version="5.4.0" />
-		<PackageReference Include="bHapticsLib" Version="1.0.6" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 
     <Reference Include="ref\**\*.dll"></Reference>
-
-    <!--
-      Removing redundant references
-    -->
-    <Reference Remove="ref\**\System.*.dll"></Reference>
-    <Reference Remove="ref\**\Microsoft.Win32.SystemEvents.dll"></Reference>
   </ItemGroup>
 
   <ItemGroup>
     <GameDirFile Include="$(SolutionDir)\game_dir.txt"></GameDirFile>
   </ItemGroup>
+
+  <Target Name="PreBuild" AfterTargets="PreBuildEvent">
+    <ReadLinesFromFile File="@(GameDirFile)">
+      <Output TaskParameter="Lines" PropertyName="GameDir" />
+    </ReadLinesFromFile>
+
+    <!-- Copy Il2CppAssemblies into mod ref folder -->
+    <Copy SourceFiles="$(GameDir)\MelonLoader\Il2CppAssemblies" DestinationFolder="ref\Il2CppAssemblies" />
+  </Target>
   
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <!-- Read game_dir.txt into property -->
