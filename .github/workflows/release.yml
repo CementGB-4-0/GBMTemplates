@@ -22,11 +22,11 @@ jobs:
         run: dotnet build --configuration Release /p:Version=${VERSION}
       - name: Test
         run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
-      - name: Pack
-        run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
       - name: Authenticate to GitHub Packages
         run: dotnet nuget add source --username TheUltimateNuke --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/GBMTemplates/index.json"  
+      - name: Pack
+        run: dotnet pack --configuration Release /p:Version=${VERSION} --output .
       - name: Push to GitHub Packages
-        run: dotnet nuget push GBMTemplates.${VERSION}.nupkg --source https://nuget.pkg.github.com/TheUltimateNuke/index.json --api-key ${GITHUB_TOKEN}
-        env:
+        run: dotnet nuget push GBMTemplates.${VERSION}.nupkg --source "github"
+      env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
