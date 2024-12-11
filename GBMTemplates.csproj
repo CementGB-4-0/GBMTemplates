@@ -9,6 +9,8 @@
     <Description>Templates to use when creating mods for Gang Beasts.</Description>
     <PackageTags>dotnet-new;templates;gang-beasts</PackageTags>
     <TargetFramework>net6.0</TargetFramework>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/TheUltimateNuke/GBMTemplates</RepositoryUrl>
 
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
