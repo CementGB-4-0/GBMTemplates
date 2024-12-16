@@ -1,6 +1,3 @@
-spermissions:
-  packages: write
-  contents: read
 on:
     push:
       tags:
