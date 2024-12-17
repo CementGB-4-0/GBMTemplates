@@ -19,6 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="README.md" />
     <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
     <Compile Remove="**\*" />
   </ItemGroup>
