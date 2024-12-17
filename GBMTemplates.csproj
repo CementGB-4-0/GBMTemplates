@@ -3,6 +3,7 @@
   <PropertyGroup>
     <PackageType>Template</PackageType>
     <PackageId>GBMTemplates</PackageId>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <Title>Gang Beast Modding Templates</Title>
     <Authors>TheUltimateNuke</Authors>
     <Description>Templates to use when creating mods for Gang Beasts.</Description>
