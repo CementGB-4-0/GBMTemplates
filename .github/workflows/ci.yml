@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
-        run: dotnet build -o Output/ --configuration Release
+        run: dotnet pack -o Output/ --configuration Release
       - name: Test
         run: dotnet test --configuration Release --no-build
       - name: Upload output as artifact
