@@ -71,8 +71,12 @@
       <Output TaskParameter="Lines" PropertyName="GameDir" />
     </ReadLinesFromFile>
 
+    <ItemGroup>
+      <Il2CppAssemblies Include="$(GameDir)\MelonLoader\Il2CppAssemblies\**\*.*" />
+    </ItemGroup>
+
     <!-- Copy Il2CppAssemblies into mod ref folder -->
-    <Copy SourceFiles="$(GameDir)\MelonLoader\Il2CppAssemblies" DestinationFolder="ref\Il2CppAssemblies" />
+    <Copy SourceFiles="@(Il2CppAssemblies)" DestinationFolder="ref\Il2CppAssemblies\%(Il2CppAssemblies.RecursiveDir)" />
   </Target>
   
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
