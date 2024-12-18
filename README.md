@@ -21,7 +21,7 @@ Then, create a new mod using the short name of one of the templates, like so:
 ```dotnet new gbm-ml-standalone -o <mod name>```.
 
 It will tell you to add a file named `game_dir.txt` next to the solution file. Write the path to your game folder in this new text file. **Ensure there are not multiple lines in the file, as this breaks the build system currently.**  
-After that, run `dotnet build`. The built dll should be automatically copied to your game's `Mods` folder for rapid iteration.
+After that, run `dotnet build`. The references should be put in your `ref` folder and the built dll should be automatically copied to your game's `Mods` folder for rapid iteration.
 
 ## Prerequisites
 
