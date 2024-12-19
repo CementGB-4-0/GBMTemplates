@@ -1,16 +1,19 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "TheUltimateNuke",
-  "classifications": [ "Mod", "Class Library" ], 
+  "classifications": [
+    "Mod",
+    "Class Library"
+  ],
   "name": "Gang Beasts Mod (MelonLoader Standalone)",
-  "identity": "GBMTemplates.Standalone",        
-  "shortName": "gbm-ml-standalone",                
+  "identity": "GBMTemplates.Standalone",
+  "shortName": "gbm-ml-standalone",
   "tags": {
-    "language": "C#",               
-    "type": "project"      
+    "language": "C#",
+    "type": "project"
   },
   "sourceName": "GBMTemplates.Standalone",
-  "preferNameDirectory" : true,
+  "preferNameDirectory": true,
   "symbols": {
     "modName": {
       "displayName": "Mod Name",
@@ -30,12 +33,16 @@
       "path": "GBMTemplates.Standalone.csproj"
     }
   ],
-  "postActions": [{
-    "actionId": "AC1156F7-BB77-4DB8-B28F-24EEBCCA1E5C",
-    "description": "Manual actions required",
-    "manualInstructions": [{
-      "text": "Copy and paste the path to your game folder into a new file called 'game_dir.txt' next to your '*.sln' file."
-    }],
-    "continueOnError": true
-  }]
+  "postActions": [
+    {
+      "actionId": "AC1156F7-BB77-4DB8-B28F-24EEBCCA1E5C",
+      "description": "Manual actions required",
+      "manualInstructions": [
+        {
+          "text": "Copy and paste the path to your game folder into a new file called 'game_dir.txt' next to your '*.sln' file."
+        }
+      ],
+      "continueOnError": true
+    }
+  ]
 }
