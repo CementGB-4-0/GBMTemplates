@@ -9,7 +9,6 @@
     <LangVersion>latest</LangVersion>
     <DefineConstants>$(DefineConstants);MELONLOADER</DefineConstants>
     <Nullable>disable</Nullable>
-    <Optimize>false</Optimize>
 
     <OutputType>Library</OutputType>
     
