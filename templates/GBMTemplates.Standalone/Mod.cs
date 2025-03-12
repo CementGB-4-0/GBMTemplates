@@ -13,7 +13,7 @@ public class Mod : MelonMod
         public const string Name = "ModName";
         public const string Author = "AuthorName";
         public const string Version = "0.1.0";
-        public const string DownloadLink = null
+        public const string DownloadLink = null;
     }
 
     public static MelonLogger.Instance Logger => Melon<Mod>.Logger; // Forwards MelonLoader's Logger to static access, so it is easier to call for it from other classes (instead of Melon<Mod>.Msg("blah blah") it is simply Mod.Logger.Msg("blah blah"))

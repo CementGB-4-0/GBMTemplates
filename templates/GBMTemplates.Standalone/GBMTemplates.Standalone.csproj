@@ -6,7 +6,7 @@
     <TargetFramework>net6.0</TargetFramework>
     
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>12</LangVersion>
     <DefineConstants>$(DefineConstants);MELONLOADER</DefineConstants>
     <Nullable>disable</Nullable>
 
@@ -45,6 +45,7 @@
 
   <ItemGroup>
     <!-- MelonLoader Packages - Feel free to remove some if unused -->
+    <PackageReference Include="GangBeasts.GameLibs" Version="1.26.0-gh13" />
     <PackageReference Include="LavaGang.MelonLoader" Version="0.6.6" />
     <PackageReference Include="Il2CppInterop.Common" Version="1.4.6-ci.579" />
 		<PackageReference Include="Il2CppInterop.Runtime" Version="1.4.6-ci.579" />
@@ -64,19 +65,6 @@
   <ItemGroup>
     <GameDirFile Include="$(SolutionDir)\game_dir.txt"></GameDirFile>
   </ItemGroup>
-
-  <Target Name="PreBuild" AfterTargets="PreBuildEvent">
-    <ReadLinesFromFile File="@(GameDirFile)">
-      <Output TaskParameter="Lines" PropertyName="GameDir" />
-    </ReadLinesFromFile>
-
-    <ItemGroup>
-      <Il2CppAssemblies Include="$(GameDir)\MelonLoader\Il2CppAssemblies\**\*.*" />
-    </ItemGroup>
-
-    <!-- Copy Il2CppAssemblies into mod ref folder -->
-    <Copy SourceFiles="@(Il2CppAssemblies)" DestinationFolder="ref\Il2CppAssemblies\%(Il2CppAssemblies.RecursiveDir)" />
-  </Target>
   
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <!-- Read game_dir.txt into property -->

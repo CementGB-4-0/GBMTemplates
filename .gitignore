@@ -401,3 +401,5 @@ FodyWeavers.xsd
 
 ref/**/*
 !ref/README.*
+
+templates/GBMTemplates.Standalone/*.sln
