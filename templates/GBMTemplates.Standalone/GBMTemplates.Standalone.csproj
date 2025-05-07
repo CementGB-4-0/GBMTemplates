@@ -11,6 +11,12 @@
     <Nullable>disable</Nullable>
 
     <OutputType>Library</OutputType>
+
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://www.nuget.org/api/v2/;
+      https://nuget.bepinex.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
     
 	  <!-- <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies> -->
   </PropertyGroup>
