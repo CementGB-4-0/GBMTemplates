@@ -3,6 +3,12 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 
+    <!-- Feel free to change these if needed -->
+    <AssemblyName>GBMTemplates.Standalone</AssemblyName>
+    <Author>TheUltimateNuke</Author>
+    <Version>1.0.0</Version>
+    <!-- -->
+
     <TargetFramework>net6.0</TargetFramework>
     
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -79,6 +85,32 @@
     </ReadLinesFromFile>
 
     <!-- Copy the built mod dll into game Mods folder -->
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GameDir)\Mods" />
+    <Copy Condition="'$(GameDir)' != ''" SourceFiles="$(TargetPath)" DestinationFolder="$(GameDir)\Mods" />
+  </Target>
+
+  <!-- Generate MelonLoader mod info from MSBuild properties -->
+  <Target Name="AddGeneratedFile" BeforeTargets="BeforeCompile;CoreCompile" Inputs="$(MSBuildAllProjects)" Outputs="$(IntermediateOutputPath)GeneratedFile.cs">
+    <PropertyGroup>
+        <MelonLoaderModAuthor Condition="'$(MelonLoaderModAuthor)' == ''">$(Author)</MelonLoaderModAuthor>
+        <MelonLoaderModName Condition="'$(MelonLoaderModName)' == ''">$(AssemblyName)</MelonLoaderModName>
+        <MelonLoaderModVersion Condition="'$(MelonLoaderModVersion)' == ''">$(Version)</MelonLoaderModVersion>
+        <GeneratedText><![CDATA[
+namespace $(RootNamespace)
+{
+internal static class MyModInfo
+{
+    public const string Author = "$(MelonLoaderModAuthor)"%3B
+    public const string Name = "$(MelonLoaderModName)"%3B
+    public const string Version = "$(MelonLoaderModVersion)"%3B
+}
+}
+  ]]></GeneratedText>
+        <GeneratedFilePath>$(IntermediateOutputPath)/MyModInfo.cs</GeneratedFilePath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="$(GeneratedFilePath)" />
+        <FileWrites Include="$(GeneratedFilePath)" />
+    </ItemGroup>
+    <WriteLinesToFile Lines="$(GeneratedText)" File="$(GeneratedFilePath)" WriteOnlyWhenDifferent="true" Overwrite="true" />
   </Target>
 </Project>
