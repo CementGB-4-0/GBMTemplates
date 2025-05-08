@@ -15,7 +15,7 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v4
         with:
-          source-url: https://nuget.pkg.github.com/TheUltimateNuke/index.json
+          source-url: https://nuget.pkg.github.com/CementGB-4-0/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
